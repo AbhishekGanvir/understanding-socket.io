@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Socket.io</title>
+</head>
+<body>
+  <h1>Understanding Socket.io</h1>
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident,
+    molestiae, exercitationem minima dolorum est numquam quam ut reprehenderit
+    iusto obcaecati quibusdam id suscipit at aliquam doloremque sapiente dolor
+    doloribus. Non?
+  </p>
+
+  <!-- load socket.io client -->
+  <script src="/socket.io/socket.io.js"></script>
+  <script type="module">
+    const socket = io(); // connect to server
+        //Client-side Connect (in browser/frontend)
+    socket.on("connect", () => {
+        console.log('Connected To Client 🤵✅');
+        //Disconnect from server after 5secs
+        setTimeout(() =>{
+            socket.disconnect()
+        },5000)
+    }) 
+    
+    //Client Emit receive
+    socket.on("message",(message) => {console.log(message);});
+    
+    // for in server msg
+   socket.emit("new message", "This Is New Message 📩");
+
+     // Server-side Disconnect
+    socket.on("disconnect", () => {
+        console.log('Disconnected From Server 🤵👎')
+    })     
+  </script>
+</body>
+</html>
